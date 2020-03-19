@@ -3,6 +3,7 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 import pandas as pd
 
+from database.DB_util import MongoDB
 from scripts.scraper import simple_get
 
 raw_html = simple_get('https://www.canada.ca/en/public-health/services/diseases/2019-novel-coronavirus-infection.html')
@@ -21,7 +22,9 @@ for row in tbody.select('tr'):
         provinces.append({"province": row.select('td')[0].text, "confirmed": row.select('td')[1].text
                          , "probable": row.select('td')[2].text})
 
-print(provinces)
+instance = MongoDB.getInstance()
+instance.create_docs(provinces, "current_situation")
+print(">>>>     Current Situation Scraping Done !!!    >>>>>")
 
 
 
