@@ -1,10 +1,10 @@
 
-from selenium import webdriver
 from bs4 import BeautifulSoup
-import pandas as pd
 
 from database.DB_util import MongoDB
 from scripts.scraper import simple_get
+
+# This script will scrape the current situation in Canada
 
 raw_html = simple_get('https://www.canada.ca/en/public-health/services/diseases/2019-novel-coronavirus-infection.html')
 html = BeautifulSoup(raw_html, 'html.parser')
