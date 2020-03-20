@@ -47,18 +47,18 @@ default_args = {
 
 # [START instantiate_dag]
 dag = DAG(
-    'news_fetch2',
+    'workflow_dag',
     default_args=default_args,
-    description='News Fetch DAG',
+    description='A dag file which handles data fetch scripts',
 )
 # [END instantiate_dag]
 
 # t1 and t2 are examples of tasks created by instantiating operators
 # [START basic_task]
 t1 = BashOperator(
-    task_id='fox_news_parser',
+    task_id='canada_current_situation',
     depends_on_past=False,
-    bash_command="python scripts/canada_covid_updates.py",
+    bash_command="python /home/abin/PycharmProjects/covid19/scripts/canada_covid_updates.py",
     # retries=3,
     dag=dag,
 )
